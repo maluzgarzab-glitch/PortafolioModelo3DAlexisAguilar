@@ -1,4 +1,4 @@
-# Portafolio 3D — Alex Rivas
+# Portafolio 3D — Alexis Aguilar
 
 Portafolio personal, oscuro y minimalista, para mostrar trabajos de modelado y arte 3D.
 Pensado para aplicar a puestos de **practicante (internship)** en estudios de videojuegos.
