@@ -493,15 +493,19 @@ function initCarousel(cardEl) {
 }
 
 /* =========================================================================
- * Formulario de contacto (validación + feedback simulado en front-end)
+ * Formulario de contacto
+ * Envía los datos a Formspree (https://formspree.io) mediante fetch, sin
+ * recargar la página. Configura el endpoint en el atributo "action" del
+ * <form id="contact-form"> en index.html.
  * ===================================================================== */
 function initContactForm() {
   const form = document.getElementById("contact-form");
   if (!form) return;
 
   const feedback = document.getElementById("form-feedback");
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     clearFormErrors(form);
 
@@ -528,10 +532,38 @@ function initContactForm() {
       return;
     }
 
-    // Conectar a un servicio como Formspree/Getform o a un backend propio
-    // reemplazando este bloque por la llamada fetch() correspondiente.
-    showFormFeedback(feedback, `¡Gracias, ${name}! Tu mensaje fue recibido.`, "success");
-    form.reset();
+    if (form.action.includes("TU_FORM_ID")) {
+      showFormFeedback(
+        feedback,
+        "El formulario aún no está conectado a Formspree. Mientras tanto, escribe directamente al correo de arriba.",
+        "error"
+      );
+      return;
+    }
+
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Enviando...";
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        showFormFeedback(feedback, `¡Gracias, ${name}! Tu mensaje fue enviado, te responderé pronto.`, "success");
+        form.reset();
+      } else {
+        showFormFeedback(feedback, "Hubo un problema al enviar tu mensaje. Intenta de nuevo o usa el correo directo.", "error");
+      }
+    } catch (err) {
+      showFormFeedback(feedback, "No se pudo conectar. Revisa tu internet o usa el correo directo.", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
   });
 }
 

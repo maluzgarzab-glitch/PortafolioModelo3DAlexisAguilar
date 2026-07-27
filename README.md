@@ -63,14 +63,22 @@ El tema de color se define en `index.html`, dentro de `tailwind.config` (colores
 
 ## Formulario de contacto
 
-El formulario valida los campos en el navegador, pero no envía correos reales porque el sitio no
-tiene backend. Opciones:
+El formulario ya está conectado a [Formspree](https://formspree.io/) (servicio gratuito que recibe
+el envío y te lo manda por correo, sin necesidad de programar un backend ni una base de datos).
+Para activarlo:
 
-1. Usar el enlace `mailto:` que ya está en la sección de contacto (funciona sin configuración).
-2. Conectar el `<form id="contact-form">` a un servicio como
-   [Formspree](https://formspree.io/) o [Getform](https://getform.io/), o a un backend propio,
-   reemplazando el bloque final de `initContactForm()` en `js/main.js` por la llamada `fetch()`
-   correspondiente.
+1. Crea una cuenta gratis en [formspree.io](https://formspree.io/) con tu correo.
+2. Crea un nuevo formulario ("New Form") y copia el endpoint que te da, con forma
+   `https://formspree.io/f/xxxxxxx`.
+3. En `index.html`, busca el `<form id="contact-form" action="https://formspree.io/f/TU_FORM_ID" ...>`
+   en la sección **Contacto** y reemplaza `TU_FORM_ID` por tu propio ID.
+4. Formspree te enviará un correo de confirmación la primera vez que alguien use el formulario;
+   confírmalo para empezar a recibir mensajes en tu bandeja de entrada.
+
+El plan gratuito de Formspree permite hasta 50 envíos al mes, más que suficiente para un portafolio.
+
+Como alternativa siempre queda el enlace `mailto:` de la sección de contacto, que funciona sin
+ninguna configuración.
 
 ## Publicar el sitio (hosting)
 
