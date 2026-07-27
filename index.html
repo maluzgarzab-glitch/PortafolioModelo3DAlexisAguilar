@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Rivas · 3D Artist &amp; Game Dev Generalist</title>
+  <meta name="description" content="Portafolio de modelado y arte 3D de Alex Rivas: personajes, escenarios y props para videojuegos." />
+
+  <!-- Favicon: monograma "AR" -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%2305050a%22/><text x=%2232%22 y=%2242%22 font-family=%22Arial, sans-serif%22 font-size=%2226%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22%238b6bff%22>AR</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Space Grotesk", "sans-serif"],
+          },
+          colors: {
+            base: {
+              950: "#05050a",
+              900: "#0b0b14",
+              800: "#12121e",
+              700: "#1b1b2b",
+              600: "#26263a",
+            },
+            accent: {
+              DEFAULT: "#8b6bff",
+              400: "#a78bfa",
+              500: "#8b6bff",
+              600: "#7c5cff",
+            },
+            accent2: "#22d3ee",
+          },
+          boxShadow: {
+            glow: "0 0 40px -10px rgba(139, 107, 255, 0.45)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bg-base-950 text-slate-200 font-sans antialiased selection:bg-accent-500/40 selection:text-white">
+
+  <!-- ============================== -->
+  <!-- HEADER / NAVEGACIÓN            -->
+  <!-- ============================== -->
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b border-white/0">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 lg:px-8 h-16">
+      <a href="#inicio" class="font-display text-lg font-semibold tracking-tight text-white hover:text-accent-400 transition-colors">
+        Alex Rivas<span class="text-accent-500">.</span>
+      </a>
+
+      <!-- Nav desktop -->
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <li><a href="#inicio" class="nav-link" data-nav>Inicio</a></li>
+        <li><a href="#galeria" class="nav-link" data-nav>Galería</a></li>
+        <li><a href="#proyectos" class="nav-link" data-nav>Proyectos</a></li>
+        <li><a href="#sobre-mi" class="nav-link" data-nav>Sobre mí</a></li>
+        <li>
+          <a href="#contacto" class="inline-flex items-center rounded-full bg-accent-500 text-white px-4 py-2 text-sm font-semibold hover:bg-accent-600 transition-colors">
+            Contacto
+          </a>
+        </li>
+      </ul>
+
+      <!-- Botón menú móvil -->
+      <button id="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 text-slate-200 hover:bg-white/5 transition-colors">
+        <svg id="icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+    </nav>
+
+    <!-- Nav móvil -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-base-950/95 backdrop-blur">
+      <ul class="flex flex-col gap-1 px-6 py-4 text-sm font-medium text-slate-300">
+        <li><a href="#inicio" class="block py-2" data-nav>Inicio</a></li>
+        <li><a href="#galeria" class="block py-2" data-nav>Galería</a></li>
+        <li><a href="#proyectos" class="block py-2" data-nav>Proyectos</a></li>
+        <li><a href="#sobre-mi" class="block py-2" data-nav>Sobre mí</a></li>
+        <li><a href="#contacto" class="block py-2 text-accent-400" data-nav>Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================== -->
+    <!-- HERO                           -->
+    <!-- ============================== -->
+    <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+      <!-- Glow decorativo de fondo -->
+      <div class="pointer-events-none absolute inset-0 overflow-hidden">
+        <div class="glow-blob glow-blob--accent -top-32 -left-24"></div>
+        <div class="glow-blob glow-blob--cyan top-1/3 -right-32"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(5,5,10,0.6)_85%)]"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto w-full px-6 lg:px-8 grid md:grid-cols-[1fr_1fr] gap-12 items-center py-20">
+        <div class="reveal">
+          <p class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-slate-300 uppercase mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Disponible para prácticas / internship
+          </p>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-white">
+            3D Artist &amp;
+            <span class="block bg-gradient-to-r from-accent-400 via-accent-500 to-accent2 bg-clip-text text-transparent">
+              Game Dev Generalist
+            </span>
+          </h1>
+
+          <p class="mt-6 text-lg text-slate-400 max-w-xl leading-relaxed">
+            Estudiante de desarrollo de videojuegos enfocado en modelado, texturizado e integración de assets 3D
+            para juegos. Me apasiona construir personajes, escenarios y props listos para producción, desde el
+            concepto hasta el motor.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#galeria" class="inline-flex items-center gap-2 rounded-full bg-accent-500 text-white px-6 py-3 text-sm font-semibold shadow-glow hover:bg-accent-600 hover:-translate-y-0.5 transition-all">
+              Ver trabajos
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            </a>
+            <a href="#contacto" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 hover:bg-white/5 hover:-translate-y-0.5 transition-all">
+              Contacto
+            </a>
+          </div>
+
+          <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs uppercase tracking-wider text-slate-500">
+            <span>Herramientas</span>
+            <span class="text-slate-300 normal-case tracking-normal text-sm">Blender</span>
+            <span class="text-slate-300 normal-case tracking-normal text-sm">Maya</span>
+            <span class="text-slate-300 normal-case tracking-normal text-sm">ZBrush</span>
+            <span class="text-slate-300 normal-case tracking-normal text-sm">Substance Painter</span>
+            <span class="text-slate-300 normal-case tracking-normal text-sm">Unreal Engine</span>
+            <span class="text-slate-300 normal-case tracking-normal text-sm">Unity</span>
+          </div>
+        </div>
+
+        <!-- Carrusel de mejores trabajos -->
+        <div class="reveal relative hidden sm:block" style="transition-delay: 120ms;">
+          <div id="hero-carousel" class="relative aspect-[16/10] rounded-3xl border border-white/10 bg-base-800 overflow-hidden shadow-2xl" role="group" aria-label="Carrusel de trabajos destacados" tabindex="0">
+            <div id="hero-carousel-track" class="carousel-track h-full">
+              <!-- Slides generados dinámicamente desde HERO_HIGHLIGHTS en js/main.js -->
+            </div>
+
+            <button type="button" id="hero-prev" class="carousel-arrow absolute left-3 top-1/2 -translate-y-1/2" aria-label="Trabajo anterior">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button type="button" id="hero-next" class="carousel-arrow absolute right-3 top-1/2 -translate-y-1/2" aria-label="Siguiente trabajo">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <div id="hero-dots" class="absolute top-4 left-4 flex items-center gap-1.5"></div>
+          </div>
+          <div class="absolute -bottom-6 -left-6 w-28 h-28 rounded-2xl border border-white/10 bg-base-800 hidden lg:block -z-10"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- GALERÍA DE TRABAJOS 3D         -->
+    <!-- ============================== -->
+    <section id="galeria" class="py-24 sm:py-28 border-t border-white/5">
+      <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="reveal max-w-2xl">
+          <p class="text-sm font-semibold text-accent-400 uppercase tracking-wider">Galería</p>
+          <h2 class="mt-2 font-display text-3xl sm:text-4xl font-semibold text-white">Trabajos 3D</h2>
+          <p class="mt-4 text-slate-400 leading-relaxed">
+            Una selección de personajes, escenarios y props creados como práctica y para proyectos personales.
+            Haz clic en cualquier pieza para ver más detalle.
+          </p>
+        </div>
+
+        <!-- Filtros -->
+        <div id="gallery-filters" class="reveal mt-10 flex flex-wrap gap-3" style="transition-delay: 80ms;">
+          <!-- Los botones de filtro se generan dinámicamente desde js/data.js -->
+        </div>
+
+        <!-- Grid -->
+        <div id="gallery-grid" class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Las cards se generan dinámicamente en js/main.js a partir de GALLERY_ITEMS -->
+        </div>
+
+        <p id="gallery-empty" class="hidden mt-10 text-center text-slate-500">
+          No hay piezas en esta categoría todavía.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- PROYECTOS / CASOS DE ESTUDIO   -->
+    <!-- ============================== -->
+    <section id="proyectos" class="py-24 sm:py-28 border-t border-white/5 bg-base-900/40">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="reveal max-w-2xl">
+          <p class="text-sm font-semibold text-accent-400 uppercase tracking-wider">Proyectos</p>
+          <h2 class="mt-2 font-display text-3xl sm:text-4xl font-semibold text-white">Casos de estudio</h2>
+          <p class="mt-4 text-slate-400 leading-relaxed">
+            Proyectos más largos donde participé en el pipeline completo: game jams, colaboraciones y
+            proyectos independientes.
+          </p>
+        </div>
+
+        <div id="projects-list" class="mt-12 flex flex-col gap-8">
+          <!-- Las tarjetas de proyecto se generan dinámicamente en js/main.js a partir de PROJECTS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- SOBRE MÍ                       -->
+    <!-- ============================== -->
+    <section id="sobre-mi" class="py-24 sm:py-28 border-t border-white/5">
+      <div class="max-w-3xl mx-auto px-6 lg:px-8">
+        <div class="reveal">
+          <p class="text-sm font-semibold text-accent-400 uppercase tracking-wider">Sobre mí</p>
+          <h2 class="mt-2 font-display text-3xl sm:text-4xl font-semibold text-white">Hola, soy Alex</h2>
+
+          <div class="mt-6 space-y-4 text-slate-400 leading-relaxed">
+            <p>
+              Soy estudiante de desarrollo de videojuegos con enfoque en arte 3D y modelado 3D. Disfruto el proceso
+              completo de crear un asset: desde el concepto y la escultura, hasta el texturizado PBR y su
+              integración final dentro de un motor de juego.
+            </p>
+            <p>
+              He trabajado principalmente con
+              <strong class="text-slate-200"> Maya</strong> y <strong class="text-slate-200">ZBrush</strong> para
+              modelado y escultura, <strong class="text-slate-200">Substance Painter</strong> para texturizado, y
+              <strong class="text-slate-200"> Unreal Engine</strong> / <strong class="text-slate-200">Unity</strong>
+              para la integración final de los assets en escenas jugables.
+            </p>
+            <p>
+              Actualmente busco una posición de <strong class="text-slate-200">practicante (internship)</strong>
+              donde pueda seguir aprendiendo de un equipo profesional, aportar en producción de assets y crecer
+              como artista 3D dentro de la industria de videojuegos.
+            </p>
+          </div>
+
+          <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="stat-card">
+              <p class="text-2xl font-display font-semibold text-white">12+</p>
+              <p class="text-xs text-slate-500 mt-1">Assets 3D</p>
+            </div>
+            <div class="stat-card">
+              <p class="text-2xl font-display font-semibold text-white">2</p>
+              <p class="text-xs text-slate-500 mt-1">Game Jams</p>
+            </div>
+            <div class="stat-card">
+              <p class="text-2xl font-display font-semibold text-white">6</p>
+              <p class="text-xs text-slate-500 mt-1">Herramientas</p>
+            </div>
+            <div class="stat-card">
+              <p class="text-2xl font-display font-semibold text-white">3°</p>
+              <p class="text-xs text-slate-500 mt-1">Año de estudios</p>
+            </div>
+          </div>
+
+          <a href="#" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 hover:bg-white/5 hover:-translate-y-0.5 transition-all">
+            LinkedIn
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7v9" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- CONTACTO                       -->
+    <!-- ============================== -->
+    <section id="contacto" class="py-24 sm:py-28 border-t border-white/5 bg-base-900/40">
+      <div class="max-w-6xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-12">
+        <div class="reveal">
+          <p class="text-sm font-semibold text-accent-400 uppercase tracking-wider">Contacto</p>
+          <h2 class="mt-2 font-display text-3xl sm:text-4xl font-semibold text-white">Trabajemos juntos</h2>
+          <p class="mt-4 text-slate-400 leading-relaxed max-w-md">
+            ¿Buscas un practicante de arte 3D para tu equipo? Escríbeme y con gusto compartimos más detalle
+            sobre mi disponibilidad y mi portafolio completo.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-4 text-sm">
+            <a href="mailto:alex_agui9@hotmail.com" class="flex items-center gap-3 text-slate-300 hover:text-accent-400 transition-colors">
+              <span class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              </span>
+              alex_agui9@hotmail.com
+            </a>
+            <div class="flex items-center gap-3 text-slate-300">
+              <span class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              </span>
+              Monterrey, Nuevo León (remoto disponible)
+            </div>
+          </div>
+        </div>
+
+        <form id="contact-form" class="reveal flex flex-col gap-4" style="transition-delay: 100ms;" novalidate>
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-300 mb-1.5">Nombre</label>
+            <input id="name" name="name" type="text" required autocomplete="name"
+              class="w-full rounded-lg bg-base-800 border border-white/10 px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+              placeholder="Tu nombre" />
+            <p class="field-error" data-error-for="name"></p>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-300 mb-1.5">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email"
+              class="w-full rounded-lg bg-base-800 border border-white/10 px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+              placeholder="tucorreo@ejemplo.com" />
+            <p class="field-error" data-error-for="email"></p>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-300 mb-1.5">Mensaje</label>
+            <textarea id="message" name="message" rows="4" required
+              class="w-full rounded-lg bg-base-800 border border-white/10 px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors resize-none"
+              placeholder="Cuéntame sobre la vacante o el proyecto..."></textarea>
+            <p class="field-error" data-error-for="message"></p>
+          </div>
+
+          <button type="submit" class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent-500 text-white px-6 py-3 text-sm font-semibold shadow-glow hover:bg-accent-600 transition-colors">
+            Enviar mensaje
+          </button>
+
+          <p id="form-feedback" class="hidden text-sm rounded-lg px-4 py-3 border" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== -->
+  <!-- FOOTER                         -->
+  <!-- ============================== -->
+  <footer class="border-t border-white/5 py-8">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <p>© <span id="year"></span> Alex Rivas. Todos los derechos reservados.</p>
+      <p>Hecho con HTML, Tailwind CSS y JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- ============================== -->
+  <!-- MODAL / LIGHTBOX GALERÍA       -->
+  <!-- ============================== -->
+  <div id="lightbox" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div id="lightbox-backdrop" class="absolute inset-0 bg-base-950/90 backdrop-blur-sm"></div>
+
+    <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 bg-base-900 shadow-2xl">
+      <button id="lightbox-close" type="button" aria-label="Cerrar" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-base-950/70 border border-white/10 text-slate-300 hover:text-white hover:bg-base-950 flex items-center justify-center transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+      </button>
+
+      <div class="relative bg-black">
+        <img id="lightbox-image" src="" alt="" class="w-full max-h-[55vh] object-contain bg-black" />
+
+        <button id="lightbox-prev" type="button" aria-label="Imagen anterior" class="carousel-arrow absolute left-3 top-1/2 -translate-y-1/2 hidden">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="lightbox-next" type="button" aria-label="Siguiente imagen" class="carousel-arrow absolute right-3 top-1/2 -translate-y-1/2 hidden">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+        </button>
+        <div id="lightbox-counter" class="hidden absolute bottom-3 right-3 rounded-full bg-base-950/70 border border-white/10 px-2.5 py-1 text-xs text-slate-300"></div>
+      </div>
+
+      <div id="lightbox-thumbs" class="hidden gap-2 px-6 sm:px-8 pt-4 overflow-x-auto"></div>
+
+      <div class="p-6 sm:p-8">
+        <h3 id="lightbox-title" class="font-display text-2xl font-semibold text-white"></h3>
+        <div id="lightbox-tags" class="mt-3 flex flex-wrap gap-2"></div>
+        <p id="lightbox-description" class="mt-4 text-slate-400 leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Datos del portafolio (editar aquí para cambiar contenido) -->
+  <script src="js/data.js"></script>
+  <!-- Lógica de interactividad -->
+  <script src="js/main.js"></script>
+</body>
+</html>

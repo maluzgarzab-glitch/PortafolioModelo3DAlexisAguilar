@@ -1,0 +1,378 @@
+/**
+ * styles.css
+ * -----------------------------------------------------------------------
+ * Estilos complementarios que Tailwind (vía CDN) no cubre directamente:
+ * scrollbar, glows decorativos, animaciones de aparición, cards, carrusel
+ * y el modal/lightbox. Todo con clases utilitarias sencillas y comentadas.
+ * -----------------------------------------------------------------------
+ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #05050a;
+}
+
+/* Scrollbar oscuro y discreto */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b14;
+}
+::-webkit-scrollbar-thumb {
+  background: #26263a;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34344c;
+}
+
+/* ---------------------------------------------------------------------
+ * Header
+ * ------------------------------------------------------------------- */
+#site-header.is-scrolled {
+  background-color: rgba(5, 5, 10, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link {
+  position: relative;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+.nav-link:hover {
+  color: #ffffff;
+}
+.nav-link.is-active {
+  color: #ffffff;
+}
+.nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #8b6bff, #22d3ee);
+}
+
+/* ---------------------------------------------------------------------
+ * Blobs decorativos del hero
+ * ------------------------------------------------------------------- */
+.glow-blob {
+  position: absolute;
+  width: 32rem;
+  height: 32rem;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+}
+.glow-blob--accent {
+  background: radial-gradient(circle, #8b6bff, transparent 70%);
+}
+.glow-blob--cyan {
+  background: radial-gradient(circle, #22d3ee, transparent 70%);
+}
+
+/* ---------------------------------------------------------------------
+ * Animación de aparición al hacer scroll (Intersection Observer)
+ * ------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------
+ * Botones de filtro de la galería
+ * ------------------------------------------------------------------- */
+.filter-btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.filter-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.filter-btn.is-active {
+  color: #ffffff;
+  background: #8b6bff;
+  border-color: #8b6bff;
+}
+
+/* ---------------------------------------------------------------------
+ * Cards de la galería
+ * ------------------------------------------------------------------- */
+.gallery-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #12121e;
+  cursor: pointer;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.gallery-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139, 107, 255, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+}
+.gallery-card__image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, #1f1f30, #0d0d18 75%);
+}
+.gallery-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1.1rem;
+  transition: transform 0.5s ease;
+}
+.gallery-card:hover .gallery-card__image-wrap img {
+  transform: scale(1.06);
+}
+.gallery-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 10, 0.85), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+.gallery-card:hover .gallery-card__overlay {
+  opacity: 1;
+}
+.gallery-card__expand {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.gallery-card:hover .gallery-card__expand,
+.gallery-card:focus-visible .gallery-card__expand,
+.project-card:hover .gallery-card__expand,
+.project-card:focus-within .gallery-card__expand {
+  opacity: 1;
+}
+.gallery-card__expand span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  background: rgba(5, 5, 10, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e2e8f0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  backdrop-filter: blur(4px);
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Carrusel del Hero (mejores trabajos)
+ * ------------------------------------------------------------------- */
+#hero-carousel {
+  cursor: pointer;
+}
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  background: #1b1b2b;
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-slide__caption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(5, 5, 10, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+}
+.hero-slide__index {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 999px;
+  background: rgba(5, 5, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Tarjetas de proyecto / caso de estudio
+ * ------------------------------------------------------------------- */
+.project-card {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b0b14;
+  overflow: hidden;
+}
+
+/* Carrusel simple para cada proyecto */
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  height: 100%;
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.2s ease;
+}
+.carousel-dot.is-active {
+  width: 18px;
+  background: #8b6bff;
+}
+.carousel-arrow {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: rgba(5, 5, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.carousel-arrow:hover {
+  background: rgba(5, 5, 10, 0.85);
+}
+
+/* ---------------------------------------------------------------------
+ * Sobre mí / stats
+ * ------------------------------------------------------------------- */
+.stat-card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1rem;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.social-link:hover {
+  color: #ffffff;
+  border-color: rgba(139, 107, 255, 0.4);
+  background: rgba(139, 107, 255, 0.08);
+}
+
+/* ---------------------------------------------------------------------
+ * Formulario de contacto
+ * ------------------------------------------------------------------- */
+.field-error {
+  min-height: 1rem;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: #f87171;
+}
+
+/* ---------------------------------------------------------------------
+ * Lightbox / modal
+ * ------------------------------------------------------------------- */
+#lightbox.is-open {
+  display: flex;
+}
+
+.image-count-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 5;
+  border-radius: 999px;
+  background: rgba(5, 5, 10, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+}
+
+#lightbox-thumbs.flex {
+  display: flex;
+}
+.lightbox-thumb {
+  flex: 0 0 auto;
+  width: 4.5rem;
+  height: 3.4rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+.lightbox-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lightbox-thumb:hover {
+  opacity: 0.9;
+}
+.lightbox-thumb.is-active {
+  opacity: 1;
+  border-color: #8b6bff;
+}
